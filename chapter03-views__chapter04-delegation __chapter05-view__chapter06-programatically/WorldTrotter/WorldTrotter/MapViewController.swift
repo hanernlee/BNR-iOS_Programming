@@ -11,12 +11,26 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var mapView: MKMapView!
+    let locationManager = CLLocationManager()
+    var pinIndex: Int = 0
+    var annotationList: [MKPointAnnotation]!
     
     override func loadView() {
+        //3 Pins
+        let p1 = MKPointAnnotation()
+        p1.title = "Malaysia"
+        p1.coordinate = CLLocationCoordinate2D(latitude: 4.2105, longitude: 101.9758)
+        let p2 = MKPointAnnotation()
+        p2.title = "Melbourne"
+        p2.coordinate = CLLocationCoordinate2D(latitude: 37.8136, longitude: 144.9631)
+        let p3 = MKPointAnnotation()
+        p3.title = "Auckland"
+        p3.coordinate = CLLocationCoordinate2D(latitude: -36.8485, longitude: 174.7633)
+        annotationList = [p1, p2, p3]
+        
         // Create map view
         mapView = MKMapView()
         mapView.delegate = self
-        locationManager = CLLocationManager()
         
         // Set it as the view of this controller
         view = mapView
@@ -41,6 +55,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         // Silver Challenge
         initLocalizationButton(segmentedControl)
+        
+        // Gold Challenge
+        initRandomLocationButton(segmentedControl)
     }
     
     override func viewDidLoad() {
@@ -62,6 +79,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
+    // Silver Challenge
     func initLocalizationButton(_ anyView: UIView!){
         let localizationButton = UIButton.init(type: .system)
         localizationButton.setTitle("Localization", for: .normal)
@@ -69,8 +87,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         view.addSubview(localizationButton)
         
         //Constraints
-        let topConstraint = localizationButton.topAnchor.constraint(equalTo:anyView
-            .topAnchor, constant: 32 )
+        let topConstraint = localizationButton.topAnchor.constraint(equalTo:anyView.topAnchor, constant: 32 )
         let leadingConstraint = localizationButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor)
         let trailingConstraint = localizationButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
         
@@ -82,13 +99,54 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     @objc func showLocalization(sender: UIButton!){
-        locationManager.requestWhenInUseAuthorization()//se agrega permiso en info.plist
-        mapView.showsUserLocation = true //fire up the method mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation)
+        locationManager.requestWhenInUseAuthorization()
+        mapView.showsUserLocation = true
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         //This is a method from MKMapViewDelegate, fires up when the user`s location changes
         let zoomedInCurrentLocation = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 500, 500)
         mapView.setRegion(zoomedInCurrentLocation, animated: true)
+    }
+    
+    // Gold Challenge
+    func initRandomLocationButton(_ anyView: UIView!) {
+        let randomLocationButton = UIButton.init(type: .system)
+        randomLocationButton.setTitle("Pin Location", for: .normal)
+        randomLocationButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(randomLocationButton)
+        
+        
+        // Constraints
+        let topRandomLocationButtonConstraint = randomLocationButton.topAnchor.constraint(equalTo: anyView.topAnchor, constant: 60)
+        let leadingRandomLocationButtonConstraint = randomLocationButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor)
+        let trailingRandomLocationButtonConstraint = randomLocationButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
+        
+        topRandomLocationButtonConstraint.isActive = true
+        leadingRandomLocationButtonConstraint.isActive = true
+        trailingRandomLocationButtonConstraint.isActive = true
+        
+        randomLocationButton.addTarget(self, action: #selector(getRandomLocation(_:)), for: .touchUpInside)
+    }
+    
+    @objc func getRandomLocation(_ sender: UIButton) {
+        let region = MKCoordinateRegionMakeWithDistance(annotationList[pinIndex].coordinate, 700, 700)
+        mapView.setRegion(region, animated: true)
+        mapView.addAnnotation(annotationList[pinIndex])
+        pinIndex += 1
+        pinIndex = pinIndex % 3
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?  {
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "") as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotationList[pinIndex], reuseIdentifier: "")
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+            pinView!.pinTintColor = MKPinAnnotationView.purplePinColor()
+        } else {
+            pinView?.annotation = annotationList[pinIndex]
+        }
+        return pinView
     }
 }
