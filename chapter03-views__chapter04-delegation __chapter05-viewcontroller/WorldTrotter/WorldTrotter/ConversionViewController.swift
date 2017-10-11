@@ -37,8 +37,27 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("ConversionViewController loaded its view")
         updateCelsiusLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated) // No need for semicolon
+        
+        let hour = Calendar.current.component(.hour, from: Date())
+        var bgColor: UIColor
+        
+        switch hour {
+        case 6..<12:
+            bgColor = UIColor.cyan
+        case 12..<17:
+            bgColor = UIColor.magenta
+        case 17..<22:
+            bgColor = UIColor.purple
+        default:
+            bgColor = UIColor.lightGray
+        }
+         self.view.backgroundColor = bgColor
     }
     
     // iOS design pattern using delegation
