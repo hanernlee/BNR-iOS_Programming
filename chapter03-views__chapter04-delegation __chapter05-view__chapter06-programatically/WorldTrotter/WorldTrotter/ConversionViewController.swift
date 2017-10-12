@@ -64,7 +64,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     // text field calls method on it's delegate to check if replacement string should be accepted or rejected
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // Only allow digits Bronze Challenge
-        let allowedCharacterSet = CharacterSet(charactersIn: "0123456789.-")
+        let allowedCharacterSet = CharacterSet(charactersIn: "0123456789,-")
         let replacementStringCharacterSet = CharacterSet(charactersIn: string)
         if !replacementStringCharacterSet.isSubset(of: allowedCharacterSet) {
             print("Rejected (Invalid Character)")
@@ -72,8 +72,15 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Check for multiple .
-        let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
-        let replacementTextHasDecimalSeparator = string.range(of: ".")
+//        let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
+//        let replacementTextHasDecimalSeparator = string.range(of: ".")
+        
+        // Change to use locale-specific decimal
+        let currentLocale = Locale.current
+        let decimalSeparator = currentLocale.decimalSeparator ?? "."
+        
+        let existingTextHasDecimalSeparator = textField.text?.range(of: decimalSeparator)
+        let replacementTextHasDecimalSeparator = string.range(of: decimalSeparator)
         
         if existingTextHasDecimalSeparator != nil, replacementTextHasDecimalSeparator != nil {
             return false
@@ -91,8 +98,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func fahrenheitFieldEditingChanged(_ textField: UITextField) {
-        if let text = textField.text, let value = Double(text) {
-            fahrenheitValue = Measurement(value: value, unit: .fahrenheit)
+        if let text = textField.text, let number = numberFormatter.number(from: text) {
+            fahrenheitValue = Measurement(value: number.doubleValue, unit: .fahrenheit)
         } else {
             fahrenheitValue = nil
         }
