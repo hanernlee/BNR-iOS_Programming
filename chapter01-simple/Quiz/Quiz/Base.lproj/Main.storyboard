@@ -57,8 +57,8 @@
                             <constraint firstItem="5rJ-wn-54v" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NGg-kT-teo"/>
                             <constraint firstItem="pIy-wc-Kg0" firstAttribute="top" secondItem="Hds-1X-GW5" secondAttribute="bottom" constant="191" id="QNp-us-KhV"/>
                             <constraint firstItem="5rJ-wn-54v" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="106" id="Vbi-w3-KnX"/>
-                            <constraint firstItem="5rJ-wn-54v" firstAttribute="centerX" secondItem="Hds-1X-GW5" secondAttribute="centerX" id="eym-lc-yOg"/>
                             <constraint firstItem="MqL-JB-0fd" firstAttribute="top" secondItem="Hds-1X-GW5" secondAttribute="bottom" constant="209" id="f61-ow-MLS"/>
+                            <constraint firstItem="MqL-JB-0fd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oTu-Hf-hHT"/>
                             <constraint firstItem="f1c-H2-Qw4" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="pzQ-Jz-EDF"/>
                             <constraint firstItem="Hds-1X-GW5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="123" id="rJr-vf-YZV"/>
                             <constraint firstItem="pIy-wc-Kg0" firstAttribute="centerX" secondItem="Hds-1X-GW5" secondAttribute="centerX" id="rf1-0a-5ha"/>
@@ -68,7 +68,9 @@
                     <connections>
                         <outlet property="answerLabel" destination="pIy-wc-Kg0" id="B9N-k6-CbR"/>
                         <outlet property="currentQuestionLabel" destination="5rJ-wn-54v" id="5pl-S1-KbN"/>
+                        <outlet property="currentQuestionLabelCenterXConstraint" destination="NGg-kT-teo" id="TnD-Co-GSJ"/>
                         <outlet property="nextQuestionLabel" destination="f1c-H2-Qw4" id="h9G-Am-5JJ"/>
+                        <outlet property="nextQuestionLabelCenterXConstraint" destination="pzQ-Jz-EDF" id="Jxf-pD-i2r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
