@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -46,29 +47,48 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="WHN-UV-986" detailTextLabel="6Kv-XC-3Bp" style="IBUITableViewCellStyleValue1" id="hj1-Ec-qvU">
-                                <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="65" id="hj1-Ec-qvU" customClass="ItemCell" customModule="Homepwner" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hj1-Ec-qvU" id="9PU-vM-mft">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WHN-UV-986">
-                                            <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeb-js-8GY">
+                                            <rect key="frame" x="8" y="8" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Kv-XC-3Bp">
-                                            <rect key="frame" x="316" y="12" width="44" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVc-48-rRI">
+                                            <rect key="frame" x="325" y="22" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5h9-mS-XBI">
+                                            <rect key="frame" x="8" y="43" width="31" height="15"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="HVc-48-rRI" secondAttribute="trailing" constant="8" id="CJb-NN-emg"/>
+                                        <constraint firstItem="HVc-48-rRI" firstAttribute="centerY" secondItem="9PU-vM-mft" secondAttribute="centerY" id="Crj-GA-jPq"/>
+                                        <constraint firstItem="5h9-mS-XBI" firstAttribute="leading" secondItem="zeb-js-8GY" secondAttribute="leading" id="IDp-dQ-WAj"/>
+                                        <constraint firstAttribute="bottom" secondItem="5h9-mS-XBI" secondAttribute="bottom" constant="6.5" id="S82-af-gMg"/>
+                                        <constraint firstItem="HVc-48-rRI" firstAttribute="centerX" secondItem="9PU-vM-mft" secondAttribute="centerX" constant="158.5" id="TBb-Pk-agn"/>
+                                        <constraint firstItem="zeb-js-8GY" firstAttribute="leading" secondItem="9PU-vM-mft" secondAttribute="leadingMargin" id="a2X-bI-I6y"/>
+                                        <constraint firstItem="zeb-js-8GY" firstAttribute="top" secondItem="9PU-vM-mft" secondAttribute="topMargin" id="drk-Fc-1cs"/>
+                                        <constraint firstItem="5h9-mS-XBI" firstAttribute="top" secondItem="zeb-js-8GY" secondAttribute="bottom" constant="14" id="pR0-Gl-y9E"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="zeb-js-8GY" id="O2E-a5-hA1"/>
+                                    <outlet property="serialNumberLabel" destination="5h9-mS-XBI" id="Jnk-4e-kGy"/>
+                                    <outlet property="valueLabel" destination="HVc-48-rRI" id="vFz-cX-zcl"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
