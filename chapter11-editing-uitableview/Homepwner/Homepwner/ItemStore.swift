@@ -11,12 +11,6 @@ import UIKit
 class ItemStore {
     var allItems = [Item]()
     
-    init() {
-        for _ in 0..<5 {
-            createItem()
-        }
-    }
-    
     // discardableResult means that a caller of this function is free to ignore the result of calling this function
     @discardableResult func createItem() -> Item {
         let newItem = Item(random: true)
@@ -26,4 +20,9 @@ class ItemStore {
         return newItem
     }
     
+    func removeItem(_ item: Item) {
+        if let index = allItems.index(of: item) {
+            allItems.remove(at: index)
+        }
+    }
 }
