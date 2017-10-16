@@ -18,6 +18,8 @@
 		50C1DBFD1F92F52500E8897A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1DBFC1F92F52500E8897A /* Item.swift */; };
 		50C1DBFF1F92FE3F00E8897A /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1DBFE1F92FE3F00E8897A /* ItemStore.swift */; };
 		50E730231F9392A000054557 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E730211F938FCF00054557 /* DetailViewController.swift */; };
+		50E730251F94D02300054557 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E730241F94D02300054557 /* CustomTextField.swift */; };
+		50E730271F94D5BC00054557 /* DateCreatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E730261F94D5BC00054557 /* DateCreatedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		50C1DBFC1F92F52500E8897A /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		50C1DBFE1F92FE3F00E8897A /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
 		50E730211F938FCF00054557 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		50E730241F94D02300054557 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		50E730261F94D5BC00054557 /* DateCreatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCreatedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,9 +111,11 @@
 			children = (
 				50C1DBCC1F92D07B00E8897A /* AppDelegate.swift */,
 				50C1DBFC1F92F52500E8897A /* Item.swift */,
+				50E730261F94D5BC00054557 /* DateCreatedViewController.swift */,
 				50C1DBFE1F92FE3F00E8897A /* ItemStore.swift */,
 				50C1DBD01F92D07B00E8897A /* Main.storyboard */,
 				50E730211F938FCF00054557 /* DetailViewController.swift */,
+				50E730241F94D02300054557 /* CustomTextField.swift */,
 				50C1DBD31F92D07B00E8897A /* Assets.xcassets */,
 				50C1DBD51F92D07B00E8897A /* LaunchScreen.storyboard */,
 				50C1DBD81F92D07B00E8897A /* Info.plist */,
@@ -271,12 +277,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50E730251F94D02300054557 /* CustomTextField.swift in Sources */,
 				50C1DBFB1F92F38F00E8897A /* ItemsViewController.swift in Sources */,
 				50C1DBFD1F92F52500E8897A /* Item.swift in Sources */,
 				50C1DBFF1F92FE3F00E8897A /* ItemStore.swift in Sources */,
 				50E730231F9392A000054557 /* DetailViewController.swift in Sources */,
 				50C1DBCD1F92D07B00E8897A /* AppDelegate.swift in Sources */,
 				501FEEA51F9341EA00B2DD4B /* ItemCell.swift in Sources */,
+				50E730271F94D5BC00054557 /* DateCreatedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

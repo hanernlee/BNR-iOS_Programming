@@ -11,7 +11,7 @@ import UIKit
 class ItemsViewController: UITableViewController {
     var itemStore: ItemStore!
     
-    @IBAction func addNewItem(_ sender: UIButton) {
+    @IBAction func addNewItem(_ sender: UIBarButtonItem) {
         // Create new item and add it to the store
         let newItem = itemStore.createItem()
         
@@ -24,31 +24,15 @@ class ItemsViewController: UITableViewController {
         }
     }
     
-    @IBAction func toggleEditingMode(_ sender: UIButton) {
-        // If you are currently in editing mode
-        if isEditing {
-            // Change text of button to inform user of state
-            sender.setTitle("Edit", for: .normal)
-            
-            // Turn off editing mode
-            setEditing(false, animated: true)
-        } else {
-            // Change text of button to inform user of state
-            sender.setTitle("Done", for: .normal)
-            
-            // Enter editing mode
-            setEditing(true, animated: true)
-        }
+    // UIBarButton Edit programmatically
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        navigationItem.leftBarButtonItem = editButtonItem
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        // Get the height of the status bar
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom:0, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
@@ -85,13 +69,6 @@ class ItemsViewController: UITableViewController {
     // Viewing
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row < itemStore.allItems.count {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell",for: indexPath )
-
-//            cell.textLabel?.text = item.name
-//            cell.detailTextLabel?.text = "$" + String(item.valueInDollars)
-            
-            // Set the text on the cell with the description of the item that is at the nth index of items
-            // where n = row this cell will appear in on table view
             let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
             let item = itemStore.allItems[indexPath.row]
             

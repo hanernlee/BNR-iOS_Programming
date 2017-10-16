@@ -10,9 +10,9 @@ import UIKit
 
 class DetailViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet var nameField: UITextField!
-    @IBOutlet var serialNumberField: UITextField!
-    @IBOutlet var valueField: UITextField!
+    @IBOutlet var nameField: CustomTextField!
+    @IBOutlet var serialNumberField: CustomTextField!
+    @IBOutlet var valueField: CustomTextField!
     @IBOutlet var dateLabel: UILabel!
     
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
@@ -40,6 +40,11 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         return formatter
     }()
     
+    // Bronze Challenge
+    override func viewDidLoad() {
+        valueField.keyboardType = .numberPad
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -63,6 +68,16 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
             item.valueInDollars = value.intValue
         } else {
             item.valueInDollars = 0
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "changeDate"?:
+            let dateCreatedViewController = segue.destination as! DateCreatedViewController
+            dateCreatedViewController.item = item
+        default:
+            preconditionFailure("Unexpected segue identifier.")
         }
     }
     
