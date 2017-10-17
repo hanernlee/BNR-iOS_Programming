@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		501FEEA51F9341EA00B2DD4B /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501FEEA41F9341EA00B2DD4B /* ItemCell.swift */; };
+		50B6A10F1F94FDEF0072B8B1 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6A10E1F94FDEF0072B8B1 /* ImageStore.swift */; };
 		50C1DBCD1F92D07B00E8897A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1DBCC1F92D07B00E8897A /* AppDelegate.swift */; };
 		50C1DBD21F92D07B00E8897A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C1DBD01F92D07B00E8897A /* Main.storyboard */; };
 		50C1DBD41F92D07B00E8897A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C1DBD31F92D07B00E8897A /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		501FEEA41F9341EA00B2DD4B /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		50B6A10E1F94FDEF0072B8B1 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		50C1DBC91F92D07B00E8897A /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C1DBCC1F92D07B00E8897A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50C1DBD11F92D07B00E8897A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				50C1DBFE1F92FE3F00E8897A /* ItemStore.swift */,
 				50C1DBD01F92D07B00E8897A /* Main.storyboard */,
 				50E730211F938FCF00054557 /* DetailViewController.swift */,
+				50B6A10E1F94FDEF0072B8B1 /* ImageStore.swift */,
 				50E730241F94D02300054557 /* CustomTextField.swift */,
 				50C1DBD31F92D07B00E8897A /* Assets.xcassets */,
 				50C1DBD51F92D07B00E8897A /* LaunchScreen.storyboard */,
@@ -282,6 +285,7 @@
 				50C1DBFD1F92F52500E8897A /* Item.swift in Sources */,
 				50C1DBFF1F92FE3F00E8897A /* ItemStore.swift in Sources */,
 				50E730231F9392A000054557 /* DetailViewController.swift in Sources */,
+				50B6A10F1F94FDEF0072B8B1 /* ImageStore.swift in Sources */,
 				50C1DBCD1F92D07B00E8897A /* AppDelegate.swift in Sources */,
 				501FEEA51F9341EA00B2DD4B /* ItemCell.swift in Sources */,
 				50E730271F94D5BC00054557 /* DateCreatedViewController.swift in Sources */,

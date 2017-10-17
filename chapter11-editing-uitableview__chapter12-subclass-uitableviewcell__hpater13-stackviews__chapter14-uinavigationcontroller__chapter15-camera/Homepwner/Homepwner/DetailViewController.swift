@@ -32,8 +32,16 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
         imagePicker.delegate = self
         
+        imagePicker.allowsEditing = true
+        
         // Place image picker on the screen
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func removePicture(_ sender: UIBarButtonItem) {
+        imageStore.deleteImage(forKey: item.itemKey)
+        imageView.image = nil
+        removePictureBarButton.isEnabled = false
     }
     
     var item: Item! {
@@ -41,6 +49,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
             navigationItem.title = item.name
         }
     }
+    
+    var imageStore: ImageStore!
     
     let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -57,9 +67,27 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         return formatter
     }()
     
-    // Bronze Challenge
+    var flexibleSpaceBarButton: UIBarButtonItem!
+    var removePictureBarButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         valueField.keyboardType = .numberPad
+        
+        flexibleSpaceBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        removePictureBarButton = UIBarButtonItem(
+            barButtonSystemItem: .trash,
+            target: self, action: #selector(removePicture(_:)))
+        
+        // Locate the toolbar at bottom and add to it the barButtons
+        for subView in self.view.subviews {
+            if let toolbar = subView as? UIToolbar {
+                var toolbarItems = toolbar.items
+                toolbarItems?.append(flexibleSpaceBarButton)
+                toolbarItems?.append(removePictureBarButton)
+                toolbar.setItems(toolbarItems, animated: true)
+                break
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +97,15 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         serialNumberField.text = item.serialNumber
         valueField.text = numberFormatter.string(from: NSNumber(value: item.valueInDollars))
         dateLabel.text = dateFormatter.string(from: item.dateCreated)
+        
+        // Get the item key
+        let key = item.itemKey
+        
+        // If there is an associated image with the item display it on the image view
+        let imageToDisplay = imageStore.image(forKey: key)
+        imageView.image = imageToDisplay
+        
+        removePictureBarButton.isEnabled = imageView.image != nil
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -101,5 +138,23 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // Get picked image from info dictionary
+//        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
+        
+        // Store the image in the ImageStore for the item's key
+        imageStore.setImage(image, forKey: item.itemKey)
+        
+        // Put that image on the screen in the image view
+        imageView.image = image
+        
+        // Take image picker off screen -
+        // You must call dismiss method
+        dismiss(animated: true, completion: nil)
+        
+        removePictureBarButton.isEnabled = true
     }
 }
