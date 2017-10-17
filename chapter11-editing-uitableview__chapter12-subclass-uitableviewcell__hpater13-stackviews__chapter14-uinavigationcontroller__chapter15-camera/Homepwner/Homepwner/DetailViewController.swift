@@ -26,6 +26,23 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         // If device has camera, take a picture otherwise pick from photo library
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             imagePicker.sourceType = .camera
+            
+            // Chapter 15 Gold Challenge
+            let overlayView = UIView(frame: imagePicker.cameraOverlayView!.frame)
+            
+            let crosshairLabel = UILabel()
+            crosshairLabel.text = "+"
+            crosshairLabel.font = UIFont.systemFont(ofSize: 50)
+            crosshairLabel.translatesAutoresizingMaskIntoConstraints = false
+            overlayView.addSubview(crosshairLabel)
+            
+            crosshairLabel.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
+            crosshairLabel.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
+            
+            // To avoid blocking the underneath default camera controls
+            overlayView.isUserInteractionEnabled = false
+            
+            imagePicker.cameraOverlayView = overlayView
         } else {
             imagePicker.sourceType = .photoLibrary
         }
