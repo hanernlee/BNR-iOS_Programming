@@ -16,6 +16,7 @@
 		501E97DD1F97877F00F3E5EC /* TouchTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501E97DC1F97877F00F3E5EC /* TouchTrackerUITests.swift */; };
 		501E97EB1F9787B200F3E5EC /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501E97EA1F9787B200F3E5EC /* Line.swift */; };
 		501E97ED1F97884C00F3E5EC /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501E97EC1F97884C00F3E5EC /* DrawView.swift */; };
+		501E97EF1F98D4EE00F3E5EC /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501E97EE1F98D4EE00F3E5EC /* Circle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		501E97DE1F97877F00F3E5EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		501E97EA1F9787B200F3E5EC /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		501E97EC1F97884C00F3E5EC /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
+		501E97EE1F98D4EE00F3E5EC /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				501E97BC1F97877F00F3E5EC /* AppDelegate.swift */,
 				501E97BE1F97877F00F3E5EC /* ViewController.swift */,
 				501E97EA1F9787B200F3E5EC /* Line.swift */,
+				501E97EE1F98D4EE00F3E5EC /* Circle.swift */,
 				501E97EC1F97884C00F3E5EC /* DrawView.swift */,
 				501E97C01F97877F00F3E5EC /* Main.storyboard */,
 				501E97C31F97877F00F3E5EC /* Assets.xcassets */,
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				501E97EF1F98D4EE00F3E5EC /* Circle.swift in Sources */,
 				501E97EB1F9787B200F3E5EC /* Line.swift in Sources */,
 				501E97BF1F97877F00F3E5EC /* ViewController.swift in Sources */,
 				501E97ED1F97884C00F3E5EC /* DrawView.swift in Sources */,
