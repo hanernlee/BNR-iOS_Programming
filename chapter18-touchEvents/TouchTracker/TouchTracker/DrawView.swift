@@ -48,6 +48,7 @@ class DrawView: UIView {
 //        UIColor.black.setStroke()
         finishedLineColor.setStroke()
         for line in finishedLines {
+            line.color.setStroke()    // Use color by angle
             stroke(line)
         }
         
@@ -61,6 +62,7 @@ class DrawView: UIView {
 //        UIColor.red.setStroke()
         currentLineColor.setStroke()
         for (_ , line) in currentLines {
+            line.color.setStroke()    // Use color by angle
             stroke(line)
         }
         
