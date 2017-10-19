@@ -15,6 +15,8 @@ class DrawView: UIView {
     var currentCircle = Circle()
     var finishedCircles = [Circle]()
     
+    var selectedLineIndex: Int?
+    
     @IBInspectable var finishedLineColor: UIColor = UIColor.black {
         didSet {
             setNeedsDisplay()
@@ -33,6 +35,43 @@ class DrawView: UIView {
         }
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        // Double Tap to clear
+        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(DrawView.doubleTap(_:)))
+        doubleTapRecognizer.numberOfTapsRequired = 2
+        doubleTapRecognizer.delaysTouchesBegan = true
+        addGestureRecognizer(doubleTapRecognizer)
+        
+        // Select line
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(DrawView.tap(_:)))
+        tapRecognizer.delaysTouchesBegan = true
+        tapRecognizer.require(toFail: doubleTapRecognizer)
+        addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc func doubleTap(_ gestureRecognizer: UIGestureRecognizer) {
+        print("Recognized double tap")
+        
+        selectedLineIndex = nil
+        currentLines.removeAll()
+        finishedLines.removeAll()
+        
+        finishedCircles.removeAll()
+        
+        setNeedsDisplay()
+    }
+    
+    @objc func tap(_ gestureRecognizer: UIGestureRecognizer) {
+        print("Recognized a tap")
+        
+        let point = gestureRecognizer.location(in: self)
+        selectedLineIndex = indexOfLine(at: point)
+        
+        setNeedsDisplay()
+    }
+    
     func stroke(_ line: Line) {
         let path = UIBezierPath()
         path.lineWidth = lineThickness
@@ -44,26 +83,22 @@ class DrawView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        // Draw finished lines in black
-//        UIColor.black.setStroke()
         finishedLineColor.setStroke()
         for line in finishedLines {
             line.color.setStroke()    // Use color by angle
             stroke(line)
         }
-        
-//        if let line = currentLine {
-//            // If there is a line currently being drawn, do it in red
-//            UIColor.red.setStroke()
-//            stroke(line)
-//        }
-        
-        // Draw currentLines in red
-//        UIColor.red.setStroke()
+
         currentLineColor.setStroke()
         for (_ , line) in currentLines {
             line.color.setStroke()    // Use color by angle
             stroke(line)
+        }
+        
+        if let index = selectedLineIndex {
+            UIColor.green.setStroke()
+            let selectedLine = finishedLines[index]
+            stroke(selectedLine)
         }
         
         // Draw Circles
@@ -77,13 +112,28 @@ class DrawView: UIView {
         UIBezierPath(ovalIn: currentCircle.rect).stroke()
     }
     
+    func indexOfLine(at point: CGPoint) -> Int? {
+        // Find a line close to the point
+        for (index, line) in finishedLines.enumerated() {
+            let begin = line.begin
+            let end = line.end
+            
+            // Check few points on a line
+            for t in stride(from: CGFloat(0), to: 1.0, by: 0.05) {
+                let x = begin.x + ((end.x - begin.x) * t)
+                let y = begin.y + ((end.y - begin.y) * t)
+                
+                // If tapped point is within 20 points, let's return this line
+                if (hypot(x - point.x, y - point.y) < 20.0) {
+                    return index
+                }
+            }
+        }
+        // If nothing is close enough to the tapped point , then we did not select a line
+        return nil
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        let touch = touches.first!
-        // Get location of touch in view's coordinate system
-//        let location = touch.location(in: self)
-//        currentLine = Line(begin: location, end: location)
-        
-        // Log statement to see the order of events
         print(#function)
         
         if touches.count == 2 {
@@ -105,11 +155,6 @@ class DrawView: UIView {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        let touch = touches.first!
-//        let location = touch.location(in: self)
-//        currentLine?.end = location
-        
-        // Log statement to see order of events
         print(#function)
         
         if touches.count == 2 {
@@ -128,15 +173,6 @@ class DrawView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if var line = currentLine {
-//            let touch = touches.first!
-//            let location = touch.location(in: self)
-//            line.end = location
-//
-//            finishedLines.append(line)
-//        }
-//        currentLine = nil
-        
         // Log statement to see order of events
         print(#function)
         
