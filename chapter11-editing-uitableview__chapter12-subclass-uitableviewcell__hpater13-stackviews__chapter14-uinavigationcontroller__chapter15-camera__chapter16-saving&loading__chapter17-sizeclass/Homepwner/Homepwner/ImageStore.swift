@@ -18,9 +18,7 @@ class ImageStore {
         let url = imageURL(forKey: key)
         
         // Turn image into JPEG data
-//        if let data = UIImageJPEGRepresentation(image, 0.5) {
-        // Chpater 16 Bronze Challenge
-        if let data = UIImagePNGRepresentation(image) {
+        if let data = UIImageJPEGRepresentation(image, 0.5) {
             // Write it to full URL
             let _ = try? data.write(to: url, options: [.atomic])
         }
