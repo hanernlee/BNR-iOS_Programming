@@ -41,6 +41,19 @@ class PhotoInfoViewController: UIViewController {
         self.view.addSubview(label)
         
         label.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor, constant: -8).isActive = true
+        label.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: -8).isActive = true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showTags"?:
+            let navController = segue.destination as! UINavigationController
+            let tagController = navController.topViewController as! TagsViewController
+            
+            tagController.store = store
+            tagController.photo = photo
+        default:
+            preconditionFailure("Unexpected segue identifier.")
+        }
     }
 }
