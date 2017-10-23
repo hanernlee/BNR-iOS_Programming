@@ -31,7 +31,7 @@ class TagsViewController: UITableViewController {
                 let context = self.store.persistentContainer.viewContext
                 let newTag = NSEntityDescription.insertNewObject(forEntityName: "Tag", into: context)
                 
-                newTag.setValue(tagName, forKey: "names")
+                newTag.setValue(tagName, forKey: "name")
                 
                 do {
                     try self.store.persistentContainer.viewContext.save()

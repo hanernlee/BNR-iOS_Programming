@@ -153,12 +153,12 @@
                     <navigationItem key="navigationItem" title="Tags" id="6o2-VF-PSB">
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="rw4-ok-vUl">
                             <connections>
-                                <action selector="done:" destination="sv1-19-AfG" id="jPq-vk-aa1"/>
+                                <action selector="done:" destination="sv1-19-AfG" id="QEM-EZ-gIw"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dlf-7P-sqf">
                             <connections>
-                                <action selector="addNewTag:" destination="sv1-19-AfG" id="ST7-JL-hW9"/>
+                                <action selector="addNewTag:" destination="sv1-19-AfG" id="xnb-Bh-Qv0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
